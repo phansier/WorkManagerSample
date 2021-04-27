@@ -15,7 +15,6 @@ class RemoteConfigFetcherWorker(appContext: Context, workerParams: WorkerParamet
     Worker(appContext, workerParams) {
 
     companion object {
-
         fun enqueue(context: Context) {
             val constraints = Constraints.Builder()
                 .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -61,4 +60,4 @@ private fun frcFetchAndActivate(): Task<Boolean> {//Firebase.remoteConfig.fetchA
     return Tasks.forResult(false);
 }
 
-class FirebaseRemoteConfigClientException : Exception()
+private class FirebaseRemoteConfigClientException : Exception()

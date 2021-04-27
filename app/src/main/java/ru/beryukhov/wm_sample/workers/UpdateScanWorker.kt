@@ -1,22 +1,25 @@
 package ru.beryukhov.wm_sample.workers
 
 import android.content.Context
-import android.os.Build
 import androidx.work.*
 import androidx.work.ListenableWorker.Result
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
-fun enqueue(context: Context, isOnlyWhileCharging: Boolean) {
+fun enqueueUpdateScan(context: Context, isOnlyWhileCharging: Boolean) {
     val updateConstraints = Constraints.Builder()
         .setRequiredNetworkType(NetworkType.UNMETERED)
         .setRequiresStorageNotLow(true)
         .build()
     val scanConstraints = Constraints.Builder().apply {
+        // java.lang.IllegalArgumentException: Cannot set backoff criteria on an idle mode job
+        // java.lang.IllegalArgumentException: Cannot run in foreground with an idle mode constraint
+        /*
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             setRequiresDeviceIdle(true)
         }
+        */
         if (isOnlyWhileCharging) {
             setRequiresCharging(isOnlyWhileCharging)
         } else {
@@ -44,8 +47,8 @@ fun enqueue(context: Context, isOnlyWhileCharging: Boolean) {
 
     WorkManager.getInstance(context)
         .beginUniqueWork(
-            UPDATE_WORK_NAME,
-            ExistingWorkPolicy.APPEND_OR_REPLACE,
+            UpdateWorker::class.java.simpleName,
+            ExistingWorkPolicy.REPLACE,
             updateWorkRequest
         )
         .then(scanWorkRequest)
@@ -53,7 +56,6 @@ fun enqueue(context: Context, isOnlyWhileCharging: Boolean) {
 
 }
 
-private const val UPDATE_WORK_NAME = "update_work_name"
 
 class UpdateWorker(appContext: Context, workerParams: WorkerParameters) :
     RxWorker(appContext, workerParams) {
@@ -73,6 +75,6 @@ class ScanWorker(appContext: Context, workerParams: WorkerParameters) :
  * Fakes
  */
 
-fun doFakeSomething(): Single<Result> {
+private fun doFakeSomething(): Single<Result> {
     return Single.timer(10, TimeUnit.SECONDS).map { Result.success() }
 }
