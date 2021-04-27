@@ -54,6 +54,16 @@ fun enqueueUpdateScan(context: Context, isOnlyWhileCharging: Boolean) {
         .then(scanWorkRequest)
         .enqueue()
 
+    //To make a "diamond" in graph
+    /*
+    WorkManager.getInstance(context)
+        .beginWith(updateWorkRequest.build())
+        .then(listOf(scanWorkRequest.build(), workRequest.build()))
+        .then(listOf(workRequest.build(), scanWorkRequest.build()))
+        .then(updateWorkRequest.build())
+        .enqueue()
+    */
+
 }
 
 
