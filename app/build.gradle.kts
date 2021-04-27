@@ -59,4 +59,5 @@ dependencies {
 
     implementation("androidx.work:work-runtime-ktx:${rootProject.extra["wm_version"]}")
     implementation("androidx.work:work-rxjava2:${rootProject.extra["wm_version"]}")
+    implementation("com.google.android.gms:play-services-tasks:17.2.0")
 }
