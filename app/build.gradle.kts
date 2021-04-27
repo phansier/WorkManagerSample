@@ -42,7 +42,6 @@ android {
     }
     composeOptions {
         kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
-        kotlinCompilerVersion = "1.4.32"
     }
 }
 
@@ -56,6 +55,7 @@ dependencies {
     implementation("androidx.compose.ui:ui-tooling:${rootProject.extra["compose_version"]}")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.activity:activity-compose:1.3.0-alpha05")
+    implementation("androidx.compose.runtime:runtime-livedata:${rootProject.extra["compose_version"]}")
 
     implementation("androidx.work:work-runtime-ktx:${rootProject.extra["wm_version"]}")
     implementation("androidx.work:work-rxjava2:${rootProject.extra["wm_version"]}")
