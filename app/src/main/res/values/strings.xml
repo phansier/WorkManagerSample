@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">WM_Sample</string>
+    <string name="notification_channel_id">Scan</string>
+    <string name="notification_title">Scan in progress</string>
+    <string name="cancel_download">Cancel</string>
 </resources>
