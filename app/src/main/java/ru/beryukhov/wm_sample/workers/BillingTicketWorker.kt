@@ -11,7 +11,7 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.toDuration
 
 const val BILLING_WORK_DATA_KEY = "billing_work_data_key"
-const val BILLING_WORK_TAG = "billing_work_tag"
+private const val BILLING_WORK_TAG = "billing_work_tag"
 
 class BillingTicketWorker(appContext: Context, params: WorkerParameters) :
     CoroutineWorker(appContext, params) {
