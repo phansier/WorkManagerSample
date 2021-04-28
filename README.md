@@ -4,4 +4,4 @@
 
 [Slides]()
 
-[WorkManager docs Mindmap]()
+[WorkManager docs Mindmap](Mindmap.md)
