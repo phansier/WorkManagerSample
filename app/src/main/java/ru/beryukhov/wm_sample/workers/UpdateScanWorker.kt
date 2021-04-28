@@ -10,7 +10,7 @@ import io.reactivex.schedulers.Schedulers
 import java.util.concurrent.TimeUnit
 
 const val PROGRESS = "PROGRESS"
-private const val TAG_SCAN_PROGRESS = "tag_progress"
+internal const val TAG_SCAN_PROGRESS = "tag_progress"
 
 fun enqueueUpdateScan(context: Context, isOnlyWhileCharging: Boolean) {
     val updateConstraints = Constraints.Builder()
